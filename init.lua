@@ -40,11 +40,12 @@ require("lazy").setup({
   }
 })
 
--- Telescope: Ignore node_modules
+-- Telescope: Ignore folders 
 require('telescope').setup{ 
   defaults = { 
     file_ignore_patterns = { 
-      "node_modules" 
+      "node_modules/", 
+      ".dist/"
     }
   }
 }
