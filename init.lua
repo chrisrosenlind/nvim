@@ -40,13 +40,20 @@ require("lazy").setup({
   }
 })
 
+-- Telescope: Ignore node_modules
+require('telescope').setup{ 
+  defaults = { 
+    file_ignore_patterns = { 
+      "node_modules" 
+    }
+  }
+}
+
 -- General settings
 vim.opt.number = true
 vim.opt.relativenumber = true
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
