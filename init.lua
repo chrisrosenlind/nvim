@@ -15,8 +15,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
--- VS Code theme
+  -- VS Code theme
   {
+    -- VS Code theme
     "Mofiqul/vscode.nvim",
     lazy = false,
     priority = 1000,
@@ -68,4 +69,9 @@ vim.keymap.set("n", "<leader>f", function()
   vim.cmd("edit!")
   end, {
     desc = "Format with Prettier",
+})
+
+-- Toggle telescope
+vim.keymap.set("n", "<C-p>", "<cmd>Telescope find_files<CR>", {
+  desc = "Find files",
 })
