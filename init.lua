@@ -17,7 +17,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   -- VS Code theme
   {
-    -- VS Code theme
     "Mofiqul/vscode.nvim",
     lazy = false,
     priority = 1000,
