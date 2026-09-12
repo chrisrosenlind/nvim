@@ -31,11 +31,11 @@ require("lazy").setup({
     "lewis6991/gitsigns.nvim",
   },
   {
-    'nvim-telescope/telescope.nvim', version = '*',
+    "nvim-telescope/telescope.nvim", version = "*",
     dependencies = {
-        'nvim-lua/plenary.nvim',
+        "nvim-lua/plenary.nvim",
         -- optional but recommended
-        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     }
   }
 })
