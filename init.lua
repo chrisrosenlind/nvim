@@ -23,6 +23,14 @@ require("lazy").setup({
       "williamboman/mason-lspconfig.nvim",
     },
   },
+  -- Auto close brackets
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    config = true
+    -- use opts = {} for passing setup options
+    -- this is equivalent to setup({}) function
+  },
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
@@ -122,6 +130,9 @@ vim.keymap.set("n", "<leader>f", function()
 vim.keymap.set("n", "<C-p>", "<cmd>Telescope find_files<CR>", {
   desc = "Find files",
 })
+
+-- Telescope grep
+vim.keymap.set("n", "<leader>fg", require("telescope.builtin").live_grep)
 
 -- Go to definition
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, {
