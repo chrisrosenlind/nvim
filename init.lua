@@ -70,6 +70,7 @@ vim.lsp.config("ts_ls", {
 })
 
 vim.lsp.enable("ts_ls")
+vim.lsp.enable('rust_analyzer')
 
 cmp.setup({
   sources = {
@@ -107,6 +108,7 @@ vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
+vim.opt.clipboard = "unnamedplus"
 
 -- Save with Leader + w
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", {
