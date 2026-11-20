@@ -61,6 +61,58 @@ require("lazy").setup({
   }
 })
 
+-- Gitsign
+require('gitsigns').setup {
+  signs = {
+    add          = { text = '┃' },
+    change       = { text = '┃' },
+    delete       = { text = '_' },
+    topdelete    = { text = '‾' },
+    changedelete = { text = '~' },
+    untracked    = { text = '┆' },
+  },
+  signs_staged = {
+    add          = { text = '┃' },
+    change       = { text = '┃' },
+    delete       = { text = '_' },
+    topdelete    = { text = '‾' },
+    changedelete = { text = '~' },
+    untracked    = { text = '┆' },
+  },
+  signs_staged_enable = true,
+  signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
+  numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
+  linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
+  word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
+  watch_gitdir = {
+    follow_files = true
+  },
+  auto_attach = true,
+  attach_to_untracked = false,
+  current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+  current_line_blame_opts = {
+    virt_text = true,
+    virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+    delay = 1000,
+    ignore_whitespace = false,
+    virt_text_priority = 100,
+    use_focus = true,
+  },
+  current_line_blame_formatter = '<author>, <author_time:%R> - <summary>',
+  blame_formatter = nil, -- Use default
+  sign_priority = 6,
+  update_debounce = 100,
+  status_formatter = nil, -- Use default
+  max_file_length = 40000, -- Disable if file is longer than this (in lines)
+  preview_config = {
+    -- Options passed to nvim_open_win
+    style = 'minimal',
+    relative = 'cursor',
+    row = 0,
+    col = 1
+  },
+}
+
 -- Lsp
 local cmp = require("cmp")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -109,6 +161,21 @@ vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.clipboard = "unnamedplus"
+
+vim.keymap.set("n", "<Esc>", function()
+  -- 1. Clear search highlights
+  vim.cmd("nohlsearch")
+
+  -- 2. Close any floating windows (like LSP hover docs or diagnostics)
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    if vim.api.nvim_win_get_config(win).relative ~= "" then
+      vim.api.nvim_win_close(win, false)
+    end
+  end
+
+  -- 3. Still perform default <Esc> behavior (e.g., clearing pending counts/operators)
+  return "<Esc>"
+end, { expr = true, silent = true, desc = "Clear highlights, close floats, and default Esc" })
 
 -- Save with Leader + w
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", {
