@@ -58,7 +58,24 @@ require("lazy").setup({
         "nvim-lua/plenary.nvim",
         { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     }
+  },
+    -- Package-info
+    {
+    "vuki656/package-info.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    ft = "json",
+    opts = {},
+    keys = {
+      { "<leader>ns", "<cmd>PackageInfoShow<cr>", desc = "Show package versions" },
+      { "<leader>nS", "<cmd>PackageInfoShowForce<cr>", desc = "Force refresh package versions" },
+      { "<leader>nt", "<cmd>PackageInfoToggle<cr>", desc = "Toggle package versions" },
+      { "<leader>nu", "<cmd>PackageInfoUpdate<cr>", desc = "Update package on current line" },
+      { "<leader>np", "<cmd>PackageInfoChangeVersion<cr>", desc = "Change package version" },
+      { "<leader>ni", "<cmd>PackageInfoInstall<cr>", desc = "Install new package" },
+      { "<leader>nd", "<cmd>PackageInfoDelete<cr>", desc = "Delete package on current line" },
+    },
   }
+
 })
 
 -- Gitsign
